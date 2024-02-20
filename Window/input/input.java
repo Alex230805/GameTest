@@ -6,8 +6,8 @@ import java.util.*;
 
 
 public class input implements inputBufferInterface {
-    private static int x;
-    private static int y;
+    private int x;
+    private int y;
 
     public input(){
         x = 0;
@@ -46,5 +46,12 @@ public class input implements inputBufferInterface {
 
     public int getY(){
         return y;
+    }
+    public void setX(int x){
+        this.x = x;
+    }
+
+    public void setY(int y){
+        this.y = y;   
     }
 }

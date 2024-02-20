@@ -35,7 +35,7 @@ public class debug extends Panel{
             max_width = (max_width*factor);
 
 
-            graph.fillRect(20, 0, max_width, list.length*20);
+            graph.fillRect(20, 0, max_width, list.length*17);
 
             graph.setColor(c);
 

@@ -1,14 +1,13 @@
 package classes.entity;
+
 import java.awt.*;
 
-import Window.input.inputBufferInterface;
-
-
-public class entity implements entityIdInterface{
+public class entity extends Component implements entityIdInterface{
     public int x;
     public int y;
     private int id_entity;
     private String entity_name;
+    private int positionGroup = 0;
     
     public entity(int x,int y, int id_entity, String entity_name){
         this.x = x;
@@ -41,8 +40,23 @@ public class entity implements entityIdInterface{
         this.y = y;
     }
 
+    public void setPositionGroup(int pos){
+        positionGroup = pos;
+    }
+
+    public int getPositionGroup(){
+        return positionGroup;
+    }
+
     @Override
     public String toString() {
         return "entity [x=" + x + ", y=" + y + ", id_entity=" + id_entity + ", entity_name=" + entity_name + "]";
+    }
+
+
+    public boolean isFocused(){
+        return false;
+    }
+    public void setFocus(boolean b){
     }
 }
