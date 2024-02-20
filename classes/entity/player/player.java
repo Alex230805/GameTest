@@ -46,11 +46,7 @@ public class player extends entity implements inputBufferInterface,MouseListener
     }
     
     public void mouseClicked(MouseEvent m){
-        System.out.println("Entity name: "+getEntityName());
-        for(int i=0;i<entityContainer.size();i++){
-            entityContainer.get(i).setFocus(false);
-        }
-        focused = true;
+        
     }
 
     public String getEntityName(){

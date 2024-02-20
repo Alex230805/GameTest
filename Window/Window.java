@@ -7,10 +7,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import javax.swing.*;
+
 import Window.gui.*;
 import Window.input.inputBufferInterface;
 
-public class Window extends Frame implements inputBufferInterface{
+public class Window extends JFrame implements inputBufferInterface{
     private int width;
     private int height;
     public gui game_gui;
