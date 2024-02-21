@@ -19,6 +19,7 @@ public class player extends entity implements MouseListener,entityGroupInterface
     private int pov_x;
     private int pov_y;
     private int range = 10;
+    public boolean mouseReleasedflag = false;
 
     public player(  int x,int y, 
                     int id_entity, 
@@ -39,27 +40,26 @@ public class player extends entity implements MouseListener,entityGroupInterface
         Color c = graph.getColor();
         graph.setColor(Color.RED);
 
-
         graph.fillRect(super.x*speedFactor+width/2, super.y*speedFactor+height/2, width, height);
         graph.drawString(super.getEntityName(), super.x*speedFactor+width/2, super.y*speedFactor+height/2);
         graph.setColor(c);
     }
 
     public void mouseExited(MouseEvent m){}
-    public void mouseReleased(MouseEvent m){}
+    public void mouseReleased(MouseEvent m){
+        mouseReleasedflag = true;
+    }
     public void mouseEntered(MouseEvent m){}
     
     public void mousePressed(MouseEvent m){
-
+  
     }
     
     public void mouseClicked(MouseEvent m){
-        System.out.println("Attack!!");  
         Point p = m.getPoint();
 
         pov_x = p.x;
-        pov_y = p.y;      
-        
+        pov_y = p.y; 
     }
 
     public int getPovX(){
@@ -68,6 +68,19 @@ public class player extends entity implements MouseListener,entityGroupInterface
 
     public int getPovY(){
         return pov_y;
+    }
+
+
+    public void setPovX(int x){
+        this.pov_x = x;
+    }
+
+    public void setPovY(int y){
+        this.pov_y = y;
+    }
+
+    public int getRange(){
+        return range;
     }
 
     @Override

@@ -3,12 +3,14 @@ package classes.entityGroup;
 import java.util.*;
 
 import Window.input.input;
+import Window.input.inputBufferInterface;
 import classes.entity.entity;
 import classes.entity.entityIdInterface;
 
 import classes.entity.npc.npc;
+import classes.entity.player.*;;
 
-public class entityGroup implements entityGroupInterface,entityIdInterface{
+public class entityGroup implements entityGroupInterface,entityIdInterface, inputBufferInterface{
 
     public entity selectedEntity;
 
@@ -58,9 +60,20 @@ public class entityGroup implements entityGroupInterface,entityIdInterface{
         for(int i=0;i<entityContainer.size();i++){
             if(entityContainer.get(i).getId_entity() == generic_npc){
                 npc e = (npc)entityContainer.get(i);
-                e.updateNpcStatus();
+                if(!e.getPassive()){
+                    e.updateNpcStatus();
+                }
             }
+        }   
+    }
+
+    public void castPlayerAction(){
+        player p = (player)entityContainer.get(0);
+        int pov_x = p.getPovX();
+        int pov_y = p.getPovY();
+
+        if(pov_x != 0 && pov_y != 0){
+            // ray casting code here for casting entity around
         }
-        
     }
 }

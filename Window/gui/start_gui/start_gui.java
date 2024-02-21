@@ -55,6 +55,11 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         debuginfo.addDebugInfo("----------------------------");
         debuginfo.addDebugInfo("Pov_x: " + world1.main_player.getPovX());
         debuginfo.addDebugInfo("Pov_y: " + world1.main_player.getPovY());
+        debuginfo.addDebugInfo("----------------------------");
+        debuginfo.addDebugInfo("NPC 1 interaction: " + world1.c1.getPlayerFocus());
+        debuginfo.addDebugInfo("NPC 2 interaction: " + world1.c2.getPlayerFocus());
+        debuginfo.addDebugInfo("NPC 3 interaction: " + world1.c3.getPlayerFocus());
+        debuginfo.addDebugInfo("NPC 4 interaction: " + world1.c4.getPlayerFocus());
 
 
         debuginfo.displayInfo(Color.BLACK, graph);
@@ -78,11 +83,6 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         }).start();
     }
     public void keyTyped(KeyEvent e){
-        new Thread(new Runnable(){
-            public void run(){
-                System.out.println("-> "+e.getKeyChar());
-            }
-        }).start();
     }
 
     public void updateStatus(){

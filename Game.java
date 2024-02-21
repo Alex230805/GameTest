@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Game{
     private static Window wi;
-    private static final int TICK = 17;
+    private static final int TICK = 16;
     public static Graphics graph;
 
 

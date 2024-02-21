@@ -3,8 +3,10 @@ package classes.entity.npc;
 import classes.entity.entity;
 import java.awt.*;
 
+import Window.input.inputBufferInterface;
 
-public class npc extends entity{
+
+public class npc extends entity implements inputBufferInterface{
     private Color c;
     private int width;
     private int height;
@@ -13,7 +15,8 @@ public class npc extends entity{
 
     private int direction_x;
     private int direction_y;
-
+    private boolean playerFocus;
+    private boolean passive;
 
     public npc(int x, int y, int id_entity, String entity_name,int width,int height, Color c, int space_width,int space_height){
         super(x,y,id_entity,entity_name);
@@ -24,14 +27,24 @@ public class npc extends entity{
         this.space_height = space_height;
         this.direction_x = super.x;
         this.direction_y = super.y;
+        playerFocus = false;
+        passive = false;
     }
 
     public void drawEntity(Graphics graph){
         Color cache = graph.getColor();
         graph.setColor(c);
-        graph.drawRect(super.x, super.y, width, height);
-        graph.drawString(super.getEntityName(), super.x, super.y-(height/2));
+
+        if(playerFocus == true){
+            graph.fillRect(super.x*speedFactor, super.y*speedFactor, width, height);
+
+        }else{
+            graph.drawRect(super.x*speedFactor, super.y*speedFactor, width, height);
+
+        }
+        graph.drawString(super.getEntityName(), super.x*speedFactor, (super.y*speedFactor)-(height/2));
         graph.setColor(cache);
+
     }
 
     public void updateNpcStatus(){
@@ -59,8 +72,8 @@ public class npc extends entity{
     public int[] generatePos(){
         int pos[] = {0, 0};
 
-        int x = (int)Math.floor(Math.random() * space_width+1);
-        int y = (int)Math.floor(Math.random() * space_height+1);
+        int x = (int)Math.floor(Math.random() * space_width/speedFactor+1);
+        int y = (int)Math.floor(Math.random() * space_height/speedFactor+1);
         
         pos[0] = x;
         pos[1] = y;
@@ -73,4 +86,22 @@ public class npc extends entity{
     public int getDirectionY(){
         return direction_y;
     }
+
+
+    public void setPlayerFocus(boolean b){
+        this.playerFocus = b;
+    }
+
+    public  boolean getPlayerFocus(){
+        return playerFocus;
+    }
+
+
+    public void setPassive(boolean b){
+        this.passive = b;
+    }
+    public boolean getPassive(){
+        return passive;
+    }
 }
+

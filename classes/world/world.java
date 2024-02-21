@@ -8,14 +8,15 @@ import classes.entityGroup.*;
 
 import java.awt.*;
 
-public class world implements entityIdInterface,entityGroupInterface{
+import Window.input.inputBufferInterface;
+
+public class world implements entityIdInterface,entityGroupInterface, inputBufferInterface{
     private int width;
     private int height;
     private double gravity_factor;
 
     public player main_player;
 
-    public npc c;
     public npc c1;
     public npc c2;
     public npc c3;
@@ -30,16 +31,20 @@ public class world implements entityIdInterface,entityGroupInterface{
         entityContainer = new entityGroup();
 
         main_player = new player(1, 1, playerEntityId, "Player", 50, 50, width,height);
-        c = new npc(200,300, generic_npc, "NPC 1", 40,40, Color.BLUE, width,height);
-        c1 = new npc(600,100, generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
-        c2 = new npc(90,0, generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
-        c3 = new npc(50,50, generic_npc, "NPC 4", 20,40, Color.RED, width,height);
-        c4 = new npc(90,30, generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
+        
+        c1 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
+        c2 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
+        c3 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 4", 20,40, Color.RED, width,height);
+        c4 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
+
+        c1.setPassive(false);
+        c2.setPassive(false);
+        c3.setPassive(false);
+        c4.setPassive(false);
 
         main_player.setFocus(true);
 
         entityContainer.insertEntity(main_player);
-        entityContainer.insertEntity(c);
         entityContainer.insertEntity(c1);
         entityContainer.insertEntity(c2);
         entityContainer.insertEntity(c3);
@@ -48,16 +53,18 @@ public class world implements entityIdInterface,entityGroupInterface{
 
     public void updateWorldTick(){
         entityContainer.updateNpcAi();
+        entityContainer.castPlayerAction();
 
     }
 
     public void paintWorld(Graphics graph){
         main_player.drawEntity(graph);
-        c.drawEntity(graph);
+
         c1.drawEntity(graph);
         c2.drawEntity(graph);
         c3.drawEntity(graph);
         c4.drawEntity(graph);
+
     }
 
     public void updatePlayerX(int x){
