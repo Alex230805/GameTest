@@ -12,18 +12,14 @@ import Debug.debug;
 import Window.input.input;
 import Window.input.inputBufferInterface;
 import classes.entity.npc.*;
+import classes.world.world;
 
 public class start_gui extends JPanel implements entityIdInterface, KeyListener, inputBufferInterface{
     private int width;
     private int height;
-    public player p;
-    public npc c;
-    public npc c1;
-    public npc c2;
-    public npc c3;
-    public npc c4;
     public static input inputLayer;
     public entityGroup entityContainer;
+    private world world1;
 
     public start_gui(int width,int height){
         entityContainer = new entityGroup();
@@ -31,25 +27,10 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         setBounds(0, 0, width, height);
         this.width = width;
         this.height = height;
-
-        p = new player(1, 1, playerEntityId, "Player", 50, 50, width,height);
-        c = new npc(200,300, generic_npc, "NPC 1", 40,40, Color.BLUE, width,height);
-        c1 = new npc(600,100, generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
-        c2 = new npc(90,0, generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
-        c3 = new npc(50,50, generic_npc, "NPC 4", 20,40, Color.RED, width,height);
-        c4 = new npc(90,30, generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
-
-        entityContainer.insertEntity(p);
-        entityContainer.insertEntity(c);
-        entityContainer.insertEntity(c1);
-        entityContainer.insertEntity(c2);
-        entityContainer.insertEntity(c3);
-        entityContainer.insertEntity(c4);
+        world1 = new world(width, height, 9.8);
         
-        addMouseListener(p);
+        addMouseListener(world1.main_player);
 
-
-        p.setFocus(true);
         addKeyListener(this);
     }
 
@@ -61,24 +42,19 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         graph.setColor(Color.BLACK);
         graph.fillRect(0, 0, width, height);
 
-        p.drawEntity(graph);
-        c.drawEntity(graph);
-        c1.drawEntity(graph);
-        c2.drawEntity(graph);
-        c3.drawEntity(graph);
-        c4.drawEntity(graph);
+        world1.paintWorld(graph);
         
 
 
         debug debuginfo = new debug();
         debuginfo.addDebugInfo("Panel 0: Start GUI");
         debuginfo.addDebugInfo("----------------------------");
-        debuginfo.addDebugInfo("Entity 0: " + p.getEntityName());
-        debuginfo.addDebugInfo("X position: " + p.getX());
-        debuginfo.addDebugInfo("Y position: " + p.getY());
+        debuginfo.addDebugInfo("Entity 0: " + world1.main_player.getEntityName());
+        debuginfo.addDebugInfo("X position: " + world1.main_player.getX());
+        debuginfo.addDebugInfo("Y position: " + world1.main_player.getY());
         debuginfo.addDebugInfo("----------------------------");
-        debuginfo.addDebugInfo("Pov_x: " + p.getPovX());
-        debuginfo.addDebugInfo("Pov_y: " + p.getPovY());
+        debuginfo.addDebugInfo("Pov_x: " + world1.main_player.getPovX());
+        debuginfo.addDebugInfo("Pov_y: " + world1.main_player.getPovY());
 
 
         debuginfo.displayInfo(Color.BLACK, graph);
@@ -110,25 +86,25 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
     }
 
     public void updateStatus(){
-            entityContainer.updateNpcAi();
+            world1.updateWorldTick();
             if(inputLayer.isPresent(KeyEvent.VK_W)){
                 inputLayer.moveUp();
-                entityContainer.updateEntityDataY(inputLayer.getY());
+                world1.updatePlayerY(inputLayer.getY());
 
             }
             if(inputLayer.isPresent(KeyEvent.VK_S)){
                 inputLayer.moveDown();
-                entityContainer.updateEntityDataY(inputLayer.getY());
+                world1.updatePlayerY(inputLayer.getY());
 
             }
             if(inputLayer.isPresent(KeyEvent.VK_D)){
                 inputLayer.moveRight();
-                entityContainer.updateEntityDataX(inputLayer.getX());
+                world1.updatePlayerX(inputLayer.getX());
 
             }
             if(inputLayer.isPresent(KeyEvent.VK_A)){
                 inputLayer.moveLeft();
-                entityContainer.updateEntityDataX(inputLayer.getX());
+                world1.updatePlayerX(inputLayer.getX());
             }
         }
 }

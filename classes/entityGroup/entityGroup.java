@@ -25,7 +25,7 @@ public class entityGroup implements entityGroupInterface,entityIdInterface{
         entityContainer.remove(pointer);
     }
 
-    public void updateEntityDataX(int x){
+    public void updatePlayerDataX(int x){
         for(int i=0;i<entityContainer.size();i++){
             if(entityContainer.get(i).isFocused() == true){
                 entityContainer.get(i).setX(x);
@@ -35,7 +35,7 @@ public class entityGroup implements entityGroupInterface,entityIdInterface{
         
     }
 
-    public void updateEntityDataY(int y){
+    public void updatePlayerDataY(int y){
         for(int i=0;i<entityContainer.size();i++){
             if(entityContainer.get(i).isFocused() == true){
                 entityContainer.get(i).setY(y);

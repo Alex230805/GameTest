@@ -15,6 +15,9 @@ javac classes/entity/entity.java
 javac classes/entity/player/player.java
 javac classes/entity/npc/npc.java
 
+echo "Compiling world"
+
+javac classes/world/world.java
 
 echo "Compiling window system.."
 javac Window/Window.java
