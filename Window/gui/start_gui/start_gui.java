@@ -74,11 +74,11 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         debuginfo.addDebugInfo("Panel 0: Start GUI");
         debuginfo.addDebugInfo("----------------------------");
         debuginfo.addDebugInfo("Entity 0: " + p.getEntityName());
-        debuginfo.addDebugInfo("Entity 0 X position: " + p.getX());
-        debuginfo.addDebugInfo("Entity 0 Y position: " + p.getY());
+        debuginfo.addDebugInfo("X position: " + p.getX());
+        debuginfo.addDebugInfo("Y position: " + p.getY());
         debuginfo.addDebugInfo("----------------------------");
-        debuginfo.addDebugInfo("Entity 0 Y Pov_x: " + p.getPovX());
-        debuginfo.addDebugInfo("Entity 0 Y Pov_y: " + p.getPovY());
+        debuginfo.addDebugInfo("Pov_x: " + p.getPovX());
+        debuginfo.addDebugInfo("Pov_y: " + p.getPovY());
 
 
         debuginfo.displayInfo(Color.BLACK, graph);
