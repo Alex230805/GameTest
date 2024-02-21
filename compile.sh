@@ -7,11 +7,15 @@ echo "Compiling input layer.."
 javac Window/input/inputBufferInterface.java
 javac Window/input/input.java
 echo "Compiling entity"
-javac classes/entityGroup/entityGroup.java
 
-javac classes/entity/entity.java
+javac classes/entityGroup/entityGroup.java
 javac classes/entity/entityIdInterface.java
+javac classes/entity/entity.java
+
 javac classes/entity/player/player.java
+javac classes/entity/npc/npc.java
+
+
 echo "Compiling window system.."
 javac Window/Window.java
 echo "Compiling debugger.."

@@ -3,9 +3,12 @@ package classes.entityGroup;
 import java.util.*;
 
 import Window.input.input;
-import classes.entity.entity;;
+import classes.entity.entity;
+import classes.entity.entityIdInterface;
 
-public class entityGroup implements entityGroupInterface{
+import classes.entity.npc.npc;
+
+public class entityGroup implements entityGroupInterface,entityIdInterface{
 
     public entity selectedEntity;
 
@@ -49,5 +52,15 @@ public class entityGroup implements entityGroupInterface{
             }
         }
 
+    }
+
+    public void updateNpcAi(){
+        for(int i=0;i<entityContainer.size();i++){
+            if(entityContainer.get(i).getId_entity() == generic_npc){
+                npc e = (npc)entityContainer.get(i);
+                e.updateNpcStatus();
+            }
+        }
+        
     }
 }

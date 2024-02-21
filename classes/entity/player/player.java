@@ -33,8 +33,13 @@ public class player extends entity implements inputBufferInterface,MouseListener
     }
 
     public void drawEntity(Graphics graph){
+        Color c = graph.getColor();
         graph.setColor(Color.RED);
-        graph.fillRect((super.x*speedFactor)+space_width, (super.y*speedFactor)+space_height, width, height);
+
+
+        graph.fillRect(super.x*speedFactor, super.y*speedFactor, width, height);
+        graph.drawString(super.getEntityName(), super.x*speedFactor, super.y*speedFactor);
+        graph.setColor(c);
     }
 
     public void mouseExited(MouseEvent m){}
@@ -48,12 +53,6 @@ public class player extends entity implements inputBufferInterface,MouseListener
     public void mouseClicked(MouseEvent m){
         
     }
-
-    public String getEntityName(){
-        return super.getEntityName();
-    }
-
-
     @Override
 
     public boolean isFocused(){

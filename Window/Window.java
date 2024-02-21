@@ -9,7 +9,7 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.*;
 
-import Window.gui.*;
+import Window.gui.gui;
 import Window.input.inputBufferInterface;
 
 public class Window extends JFrame implements inputBufferInterface{
