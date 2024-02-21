@@ -10,12 +10,15 @@ import java.lang.*;
 
 import Window.input.inputBufferInterface;
 
-public class player extends entity implements inputBufferInterface,MouseListener,entityGroupInterface{
+public class player extends entity implements MouseListener,entityGroupInterface, inputBufferInterface{
     private int width;
     private int height;
     private int space_width;
     private int space_height;
     private boolean focused = false;
+    private int pov_x;
+    private int pov_y;
+    private int range = 10;
 
     public player(  int x,int y, 
                     int id_entity, 
@@ -37,8 +40,8 @@ public class player extends entity implements inputBufferInterface,MouseListener
         graph.setColor(Color.RED);
 
 
-        graph.fillRect(super.x*speedFactor, super.y*speedFactor, width, height);
-        graph.drawString(super.getEntityName(), super.x*speedFactor, super.y*speedFactor);
+        graph.fillRect(super.x*speedFactor+width/2, super.y*speedFactor+height/2, width, height);
+        graph.drawString(super.getEntityName(), super.x*speedFactor+width/2, super.y*speedFactor+height/2);
         graph.setColor(c);
     }
 
@@ -51,8 +54,22 @@ public class player extends entity implements inputBufferInterface,MouseListener
     }
     
     public void mouseClicked(MouseEvent m){
+        System.out.println("Attack!!");  
+        Point p = m.getPoint();
+
+        pov_x = p.x;
+        pov_y = p.y;      
         
     }
+
+    public int getPovX(){
+        return pov_x;
+    }
+
+    public int getPovY(){
+        return pov_y;
+    }
+
     @Override
 
     public boolean isFocused(){

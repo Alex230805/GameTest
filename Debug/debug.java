@@ -17,10 +17,12 @@ public class debug extends Panel{
     }
 
     public void displayInfo(Color c, Graphics graph){
+            Color cache = graph.getColor();
             int offset = 15;
             int max_width = 0;
-            int factor = 10;
+            int factor = 8;
             graph.setColor(Color.WHITE);
+            graph.setFont(new Font("roboto", Font.CENTER_BASELINE, 12));
 
             String[] list = debug_info.toArray(String[]::new);
 
@@ -42,6 +44,8 @@ public class debug extends Panel{
             for(int i=0;i<list.length;i++){
                 graph.drawString(list[i].toString(),30,15+(offset*i));
             }
+
+            graph.setColor(cache);
 
     }
 }
