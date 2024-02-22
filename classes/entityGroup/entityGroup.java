@@ -86,24 +86,55 @@ public class entityGroup implements entityGroupInterface,entityIdInterface, inpu
         return;
     }
 
-    public void castplayerCollisionWithEntity(){
+    public void castPlayerEntityCollision(){
         new Thread(new Runnable(){
             @Override
 
             public void run(){
                 player p = getPlayer();
-                Rectangle player_area = p.getBounds();
+                
                 int pos = entityContainer.indexOf(p);
         
                 for(int i=0;i<entityContainer.size();i++){
                     if(i!=pos){
-                        Rectangle ea = entityContainer.get(i).getBounds();
-
-                        if(ea.intersects(player_area) || player_area.intersects(ea)){
-                            System.out.println("Collision detect");
+                        Area player_area = new Area(p.getBounds());
+                        Area ea = new Area(entityContainer.get(i).getBounds());
+                        if(ea.intersects(player_area.getBounds2D()) || player_area.intersects(ea.getBounds2D())){
                             p.setEntityCollision(true);
                         }
                     }
+                }
+            }
+        }).start();
+    }
+
+    public void castEntityEntityCollision(){
+        new Thread(new Runnable(){
+            @Override
+
+            public void run(){
+                player p = getPlayer();
+                int pos = entityContainer.indexOf(p);
+
+                for(int i=0;i<entityContainer.size();i++){
+                    if(i!=pos){
+                        Area a1 = new Area(entityContainer.get(i).getBounds());
+                        for(int z=0;z<entityContainer.size();z++){
+                            if(z != pos){
+                                Area a2 = new Area(entityContainer.get(z).getBounds());
+                                npc e = (npc)entityContainer.get(i);
+                                npc e2 = (npc)entityContainer.get(i);
+
+                                if((entityContainer.get(i) != entityContainer.get(z))
+                                    && (a1.intersects(a2.getBounds2D()) || a2.intersects(a1.getBounds2D())) 
+                                    && ((e.getRegeneratedDirection() == false) || (e2.getRegeneratedDirection() == false))){
+                                        e.forceDirectionChanging();
+                                }
+                            }
+                        }
+                    }
+                    
+
                 }
             }
         }).start();

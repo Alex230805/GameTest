@@ -21,7 +21,7 @@ public class Game{
         wi = new Window(1200,800);
         graph = wi.getGraphics();
 
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(120);
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(64);
 
         scheduler.scheduleAtFixedRate(()->{
             SwingUtilities.invokeLater(()->{

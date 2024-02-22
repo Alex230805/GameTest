@@ -55,8 +55,8 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
     public void updateWorldTick(){
         entityContainer.updateNpcAi();
         //entityContainer.castPlayerAction();
-        entityContainer.castplayerCollisionWithEntity();
-
+        entityContainer.castPlayerEntityCollision();
+        entityContainer.castEntityEntityCollision();
     }
 
     public void paintWorld(Graphics graph){
@@ -67,6 +67,13 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
         c3.drawEntity(graph);
         c4.drawEntity(graph);
 
+        Color c = graph.getColor();
+
+        graph.setColor(Color.GREEN);
+        graph.fillRect(width/2,50 , main_player.getLifePoints()*5, 10);
+        graph.setColor(Color.GRAY);
+        graph.drawRect(width/2-1,49 , 501, 10);
+        graph.setColor(c);
     }
 
     public void updatePlayerX(int x){

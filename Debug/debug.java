@@ -21,7 +21,7 @@ public class debug extends Panel{
             int offset = 15;
             int max_width = 0;
             int factor = 8;
-            graph.setColor(Color.WHITE);
+            graph.setColor(new Color(232,232,232,230));
             graph.setFont(new Font("roboto", Font.CENTER_BASELINE, 12));
 
             String[] list = debug_info.toArray(String[]::new);
@@ -38,6 +38,9 @@ public class debug extends Panel{
 
 
             graph.fillRect(20, 0, max_width, list.length*17);
+            graph.setColor(Color.BLACK);
+            graph.drawRect(19, 0, max_width+1, list.length*17+1);
+
 
             graph.setColor(c);
 

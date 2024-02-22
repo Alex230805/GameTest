@@ -39,7 +39,7 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
     public void paintComponent(Graphics graph){
         super.paintComponent(graph);
 
-        graph.setColor(Color.BLACK);
+        graph.setColor(new Color(68, 189, 72,128));
         graph.fillRect(0, 0, width, height);
 
         world1.paintWorld(graph);
@@ -66,7 +66,7 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         debuginfo.addDebugInfo("NPC 3 x: "+ world1.c3.getX() + " y: "+world1.c3.getY());
         debuginfo.addDebugInfo("NPC 4 x: "+ world1.c4.getX() + " y: "+world1.c4.getY());
 
-        debuginfo.displayInfo(Color.BLACK, graph);
+        debuginfo.displayInfo(Color.GRAY, graph);
 
     }
 

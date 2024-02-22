@@ -22,6 +22,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
     public boolean mouseReleasedflag = false;
     private boolean enemyCollisionFlag = false;
 
+    private int lifePoints = 100;
+
     public player(  int x,int y, 
                     int id_entity, 
                     String entity_name,
@@ -44,15 +46,15 @@ public class player extends entity implements MouseListener,entityGroupInterface
         graph.setColor(Color.RED);
 
 
-        if(enemyCollisionFlag == true){
-            graph.drawRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
 
-        }else{
-            graph.fillRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
+        graph.fillRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
 
-        }
         graph.drawString(super.getEntityName(), super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2);
         graph.setColor(c);
+
+        if(enemyCollisionFlag == true){
+            lifePoints-=1;
+        }
 
         enemyCollisionFlag = false;
     }
@@ -90,6 +92,10 @@ public class player extends entity implements MouseListener,entityGroupInterface
 
     public int getPovY(){
         return pov_y;
+    }
+
+    public int getLifePoints(){
+        return lifePoints;
     }
 
     @Override

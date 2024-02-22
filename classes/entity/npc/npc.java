@@ -17,6 +17,9 @@ public class npc extends entity implements inputBufferInterface{
     private int direction_y;
     private boolean playerFocus;
     private boolean passive;
+    private boolean regeneratedDirectionFlag = false;
+
+    private int hit_box_size = 10;
 
     public npc(int x, int y, int id_entity, String entity_name,int width,int height, Color c, int space_width,int space_height){
         super(x,y,id_entity,entity_name);
@@ -29,7 +32,7 @@ public class npc extends entity implements inputBufferInterface{
         this.direction_y = super.y;
         playerFocus = false;
         passive = false;
-        setBounds(x, y, width, height);
+        setBounds(x, y, width+hit_box_size, height+hit_box_size);
         setVisible(true);
     }
 
@@ -50,6 +53,7 @@ public class npc extends entity implements inputBufferInterface{
             pos = generatePos();
             direction_x = pos[0];
             direction_y = pos[1];
+            regeneratedDirectionFlag = false;
         }
             if(direction_x > super.x){
                 super.x += 1;
@@ -75,6 +79,18 @@ public class npc extends entity implements inputBufferInterface{
         pos[0] = x;
         pos[1] = y;
         return pos;
+    }
+
+    public void forceDirectionChanging(){
+        int pos[] = {super.x,super.y};
+        pos = generatePos();
+        direction_x = pos[0];
+        direction_y = pos[1];
+        regeneratedDirectionFlag = true;
+    }
+
+    public boolean getRegeneratedDirection(){
+        return regeneratedDirectionFlag;
     }
 
     public int getDirectionX(){
