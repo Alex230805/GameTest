@@ -123,7 +123,8 @@ public class entityGroup implements entityGroupInterface,entityIdInterface, inpu
                             if(z != pos){
                                 Area a2 = new Area(entityContainer.get(z).getBounds());
                                 npc e = (npc)entityContainer.get(i);
-                                npc e2 = (npc)entityContainer.get(i);
+                                e.setRegeneratedDirection(false);
+                                npc e2 = (npc)entityContainer.get(z);
 
                                 if((entityContainer.get(i) != entityContainer.get(z))
                                     && (a1.intersects(a2.getBounds2D()) || a2.intersects(a1.getBounds2D())) 

@@ -70,9 +70,9 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
         Color c = graph.getColor();
 
         graph.setColor(Color.GREEN);
-        graph.fillRect(width/2,50 , main_player.getLifePoints()*5, 10);
+        graph.fillRect(width/2,30 , main_player.getLifePoints()*5, 10);
         graph.setColor(Color.GRAY);
-        graph.drawRect(width/2-1,49 , 501, 10);
+        graph.drawRect(width/2-1,29 , 501, 10);
         graph.setColor(c);
     }
 

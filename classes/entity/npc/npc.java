@@ -92,6 +92,9 @@ public class npc extends entity implements inputBufferInterface{
     public boolean getRegeneratedDirection(){
         return regeneratedDirectionFlag;
     }
+    public void setRegeneratedDirection(boolean b){
+        this.regeneratedDirectionFlag = b;
+    }
 
     public int getDirectionX(){
         return direction_x;
