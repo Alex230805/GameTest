@@ -32,10 +32,10 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
 
         main_player = new player(1, 1, playerEntityId, "Player", 50, 50, width,height);
         
-        c1 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
-        c2 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
-        c3 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 4", 20,40, Color.RED, width,height);
-        c4 = new npc((int)Math.floor(Math.random() * width/speedFactor + 1),(int)Math.floor(Math.random() * height/speedFactor + 1), generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
+        c1 = new npc(100,30, generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
+        c2 = new npc(-240,-200, generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
+        c3 = new npc(-210,-134, generic_npc, "NPC 4", 20,40, Color.RED, width,height);
+        c4 = new npc(545,-253, generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
 
         c1.setPassive(false);
         c2.setPassive(false);

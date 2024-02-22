@@ -123,13 +123,33 @@ public class entityGroup implements entityGroupInterface,entityIdInterface, inpu
                             if(z != pos){
                                 Area a2 = new Area(entityContainer.get(z).getBounds());
                                 npc e = (npc)entityContainer.get(i);
-                                e.setRegeneratedDirection(false);
                                 npc e2 = (npc)entityContainer.get(z);
+                                int ran = (int)Math.floor(Math.random()*2+1);
+                                int ran2 = (int)Math.floor(Math.random()*2+1);
+                                
 
                                 if((entityContainer.get(i) != entityContainer.get(z))
                                     && (a1.intersects(a2.getBounds2D()) || a2.intersects(a1.getBounds2D())) 
                                     && ((e.getRegeneratedDirection() == false) || (e2.getRegeneratedDirection() == false))){
                                         e.forceDirectionChanging();
+                                        switch(ran){
+                                            case 1:
+                                                e.forceDirectionChanging();
+                                                break;
+                                            case 2:
+                                                e2.forceDirectionChanging();
+                                            default:
+                                                break;
+                                        }
+                                        switch(ran2){
+                                            case 1:
+                                                e.forceDirectionChanging();
+                                                break;
+                                            case 2:
+                                                e2.forceDirectionChanging();
+                                            default:
+                                                break;
+                                        }
                                 }
                             }
                         }
