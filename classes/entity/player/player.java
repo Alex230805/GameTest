@@ -20,6 +20,7 @@ public class player extends entity implements MouseListener,entityGroupInterface
     private int pov_y;
     private int range = 10;
     public boolean mouseReleasedflag = false;
+    private boolean enemyCollisionFlag = false;
 
     public player(  int x,int y, 
                     int id_entity, 
@@ -33,6 +34,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
         this.height = height;
         this.space_width = space_width;
         this.space_height = space_height;
+        setBounds(x, y, width, height);
+        setVisible(true);
         super.addMouseListener(this);
     }
 
@@ -40,9 +43,26 @@ public class player extends entity implements MouseListener,entityGroupInterface
         Color c = graph.getColor();
         graph.setColor(Color.RED);
 
-        graph.fillRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
+
+        if(enemyCollisionFlag == true){
+            graph.drawRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
+
+        }else{
+            graph.fillRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
+
+        }
         graph.drawString(super.getEntityName(), super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2);
         graph.setColor(c);
+
+        enemyCollisionFlag = false;
+    }
+
+
+    public void setEntityCollision(boolean b){
+        enemyCollisionFlag = b;
+    }
+    public boolean getEntityCollision(){
+        return enemyCollisionFlag;
     }
 
     public void mouseExited(MouseEvent m){}
@@ -52,7 +72,7 @@ public class player extends entity implements MouseListener,entityGroupInterface
     public void mouseEntered(MouseEvent m){}
     
     public void mousePressed(MouseEvent m){
-  
+        System.out.println("Attack!!");
     }
     
     public void mouseClicked(MouseEvent m){
@@ -60,6 +80,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
 
         pov_x = p.x-space_width/2;
         pov_y = p.y-space_height/2; 
+
+        mouseReleasedflag = false;
     }
 
     public int getPovX(){
@@ -69,6 +91,16 @@ public class player extends entity implements MouseListener,entityGroupInterface
     public int getPovY(){
         return pov_y;
     }
+
+    @Override
+
+    public int getX(){
+        return super.x*speedFactor;
+    }
+    public int getY(){
+        return super.y*speedFactor;
+    }
+
 
 
     public void setPovX(int x){

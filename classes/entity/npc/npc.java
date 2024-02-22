@@ -29,19 +29,16 @@ public class npc extends entity implements inputBufferInterface{
         this.direction_y = super.y;
         playerFocus = false;
         passive = false;
+        setBounds(x, y, width, height);
+        setVisible(true);
     }
 
     public void drawEntity(Graphics graph){
         Color cache = graph.getColor();
         graph.setColor(c);
 
-        if(playerFocus == true){
-            graph.fillRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
+        graph.fillRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
 
-        }else{
-            graph.drawRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
-
-        }
         graph.drawString(super.getEntityName(), super.x*GenericNPCspeedFactor, (super.y*GenericNPCspeedFactor)-(height/2));
         graph.setColor(cache);
 
@@ -103,5 +100,16 @@ public class npc extends entity implements inputBufferInterface{
     public boolean getPassive(){
         return passive;
     }
+
+    @Override
+
+    public int getX(){
+        return super.x*GenericNPCspeedFactor-space_width/2;
+    }
+
+    public int getY(){
+        return super.y*GenericNPCspeedFactor-space_height/2;
+    }
 }
+
 

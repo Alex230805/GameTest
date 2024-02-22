@@ -44,6 +44,7 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
 
         main_player.setFocus(true);
 
+
         entityContainer.insertEntity(main_player);
         entityContainer.insertEntity(c1);
         entityContainer.insertEntity(c2);
@@ -53,7 +54,8 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
 
     public void updateWorldTick(){
         entityContainer.updateNpcAi();
-        entityContainer.castPlayerAction();
+        //entityContainer.castPlayerAction();
+        entityContainer.castplayerCollisionWithEntity();
 
     }
 

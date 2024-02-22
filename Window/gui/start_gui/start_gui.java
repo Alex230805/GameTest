@@ -50,8 +50,8 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         debuginfo.addDebugInfo("Panel 0: Start GUI");
         debuginfo.addDebugInfo("----------------------------");
         debuginfo.addDebugInfo("Entity 0: " + world1.main_player.getEntityName());
-        debuginfo.addDebugInfo("X position: " + world1.main_player.getX()*speedFactor);
-        debuginfo.addDebugInfo("Y position: " + world1.main_player.getY()*speedFactor);
+        debuginfo.addDebugInfo("X position: " + world1.main_player.getX());
+        debuginfo.addDebugInfo("Y position: " + world1.main_player.getY());
         debuginfo.addDebugInfo("----------------------------");
         debuginfo.addDebugInfo("Pov_x: " + world1.main_player.getPovX());
         debuginfo.addDebugInfo("Pov_y: " + world1.main_player.getPovY());
@@ -60,7 +60,11 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         debuginfo.addDebugInfo("NPC 2 interaction: " + world1.c2.getPlayerFocus());
         debuginfo.addDebugInfo("NPC 3 interaction: " + world1.c3.getPlayerFocus());
         debuginfo.addDebugInfo("NPC 4 interaction: " + world1.c4.getPlayerFocus());
-
+        debuginfo.addDebugInfo("----------------------------");
+        debuginfo.addDebugInfo("NPC 1 x: "+ world1.c1.getX() + " y: "+world1.c1.getY());
+        debuginfo.addDebugInfo("NPC 2 x: "+ world1.c2.getX() + " y: "+world1.c2.getY());
+        debuginfo.addDebugInfo("NPC 3 x: "+ world1.c3.getX() + " y: "+world1.c3.getY());
+        debuginfo.addDebugInfo("NPC 4 x: "+ world1.c4.getX() + " y: "+world1.c4.getY());
 
         debuginfo.displayInfo(Color.BLACK, graph);
 
