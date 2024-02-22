@@ -40,8 +40,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
         Color c = graph.getColor();
         graph.setColor(Color.RED);
 
-        graph.fillRect(super.x*speedFactor+width/2, super.y*speedFactor+height/2, width, height);
-        graph.drawString(super.getEntityName(), super.x*speedFactor+width/2, super.y*speedFactor+height/2);
+        graph.fillRect(super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2, width, height);
+        graph.drawString(super.getEntityName(), super.x*speedFactor+space_width/2, super.y*speedFactor+space_height/2);
         graph.setColor(c);
     }
 
@@ -58,8 +58,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
     public void mouseClicked(MouseEvent m){
         Point p = m.getPoint();
 
-        pov_x = p.x;
-        pov_y = p.y; 
+        pov_x = p.x-space_width/2;
+        pov_y = p.y-space_height/2; 
     }
 
     public int getPovX(){

@@ -28,32 +28,19 @@ public class entityGroup implements entityGroupInterface,entityIdInterface, inpu
     }
 
     public void updatePlayerDataX(int x){
-        for(int i=0;i<entityContainer.size();i++){
-            if(entityContainer.get(i).isFocused() == true){
-                entityContainer.get(i).setX(x);
-                selectedEntity = entityContainer.get(i);
-            }
-        }
-        
+        player p = getPlayer();
+        p.setX(x);
     }
 
     public void updatePlayerDataY(int y){
-        for(int i=0;i<entityContainer.size();i++){
-            if(entityContainer.get(i).isFocused() == true){
-                entityContainer.get(i).setY(y);
-                selectedEntity = entityContainer.get(i);
-            }
-        }
+        player p = getPlayer();
+        p.setY(y);
     }
 
     public void loadInfo(input inputLayer){
-        for(int i=0;i<entityContainer.size();i++){
-            if(entityContainer.get(i).isFocused() == true){
-                inputLayer.setX(entityContainer.get(i).getX());
-                inputLayer.setY(entityContainer.get(i).getY());
-            }
-        }
-
+        player p = getPlayer();
+        inputLayer.setX(p.getX());
+        inputLayer.setX(p.getY());
     }
 
     public void updateNpcAi(){
@@ -68,12 +55,21 @@ public class entityGroup implements entityGroupInterface,entityIdInterface, inpu
     }
 
     public void castPlayerAction(){
-        player p = (player)entityContainer.get(0);
+        player p = getPlayer();
         int pov_x = p.getPovX();
         int pov_y = p.getPovY();
 
         if(pov_x != 0 && pov_y != 0){
             // ray casting code here for casting entity around
         }
+    }
+
+    private player getPlayer(){
+        int i=0;
+        while(entityContainer.get(i).getId_entity() != playerEntityId){
+            i++;
+        }
+        player p = (player)entityContainer.get(i);
+        return p;
     }
 }

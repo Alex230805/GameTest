@@ -36,13 +36,13 @@ public class npc extends entity implements inputBufferInterface{
         graph.setColor(c);
 
         if(playerFocus == true){
-            graph.fillRect(super.x*speedFactor, super.y*speedFactor, width, height);
+            graph.fillRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
 
         }else{
-            graph.drawRect(super.x*speedFactor, super.y*speedFactor, width, height);
+            graph.drawRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
 
         }
-        graph.drawString(super.getEntityName(), super.x*speedFactor, (super.y*speedFactor)-(height/2));
+        graph.drawString(super.getEntityName(), super.x*GenericNPCspeedFactor, (super.y*GenericNPCspeedFactor)-(height/2));
         graph.setColor(cache);
 
     }
@@ -72,8 +72,8 @@ public class npc extends entity implements inputBufferInterface{
     public int[] generatePos(){
         int pos[] = {0, 0};
 
-        int x = (int)Math.floor(Math.random() * space_width/speedFactor+1);
-        int y = (int)Math.floor(Math.random() * space_height/speedFactor+1);
+        int x = (int)Math.floor(Math.random() * space_width/GenericNPCspeedFactor+1);
+        int y = (int)Math.floor(Math.random() * space_height/GenericNPCspeedFactor+1);
         
         pos[0] = x;
         pos[1] = y;
