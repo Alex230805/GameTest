@@ -4,9 +4,9 @@ import classes.entity.entity;
 import java.awt.*;
 
 import Window.input.inputBufferInterface;
+import java.util.*;
 
-
-public class npc extends entity implements inputBufferInterface{
+public class npc extends entity implements inputBufferInterface {
     private Color c;
     private int width;
     private int height;
@@ -18,11 +18,13 @@ public class npc extends entity implements inputBufferInterface{
     private boolean playerFocus;
     private boolean passive;
     private boolean regeneratedDirectionFlag = false;
+    private int counter = 240;
 
-    private int hit_box_size = 10;
+    private int hit_box_size = 5;
 
-    public npc(int x, int y, int id_entity, String entity_name,int width,int height, Color c, int space_width,int space_height){
-        super(x,y,id_entity,entity_name);
+    public npc(int x, int y, int id_entity, String entity_name, int width, int height, Color c, int space_width,
+            int space_height) {
+        super(x, y, id_entity, entity_name);
         this.c = c;
         this.width = width;
         this.height = height;
@@ -32,103 +34,107 @@ public class npc extends entity implements inputBufferInterface{
         this.direction_y = super.y;
         playerFocus = false;
         passive = false;
-        setBounds(x, y, width+hit_box_size, height+hit_box_size);
+        setBounds(x, y, width + hit_box_size, height + hit_box_size);
         setVisible(true);
     }
 
-    public void drawEntity(Graphics graph){
+    public void drawEntity(Graphics graph) {
         Color cache = graph.getColor();
         graph.setColor(c);
 
-        graph.fillRect(super.x*GenericNPCspeedFactor, super.y*GenericNPCspeedFactor, width, height);
+        graph.fillRect(super.x * GenericNPCspeedFactor, super.y * GenericNPCspeedFactor, width, height);
 
-        graph.drawString(super.getEntityName(), super.x*GenericNPCspeedFactor, (super.y*GenericNPCspeedFactor)-(height/2));
+        graph.drawString(super.getEntityName(), super.x * GenericNPCspeedFactor,
+                (super.y * GenericNPCspeedFactor) - (height / 2));
         graph.setColor(cache);
 
     }
 
-    public void updateNpcStatus(){
-        int pos[] = {super.x,super.y};
-        if(super.x == direction_x && super.y == direction_y){
-            pos = generatePos();
-            direction_x = pos[0];
-            direction_y = pos[1];
-            regeneratedDirectionFlag = false;
+    public void updateNpcStatus() {
+        int pos[] = { super.x, super.y };
+        if (super.x == direction_x && super.y == direction_y) {
+            counter--;
+            if(counter == 0){
+                pos = generatePos();
+                direction_x = pos[0];
+                direction_y = pos[1];
+                counter = (int)Math.floor(Math.random()*240+1);
+                regeneratedDirectionFlag = false;
+            }
         }
-            if(direction_x > super.x){
-                super.x += 1;
-            }
-            if(direction_x < super.x){
-                super.x -= 1;
-            }
-            if(direction_y > super.y){
-                super.y += 1;
-            }
-            if(direction_y < super.y){
-                super.y -= 1;
-            }
+        if (direction_x > super.x) {
+            super.x += 1;
+        }
+        if (direction_x < super.x) {
+            super.x -= 1;
+        }
+        if (direction_y > super.y) {
+            super.y += 1;
+        }
+        if (direction_y < super.y) {
+            super.y -= 1;
+        }
 
     }
 
-    public int[] generatePos(){
-        int pos[] = {0, 0};
+    public int[] generatePos() {
+        int pos[] = { 0, 0 };
 
-        int x = (int)Math.floor(Math.random() * space_width/GenericNPCspeedFactor+1);
-        int y = (int)Math.floor(Math.random() * space_height/GenericNPCspeedFactor+1);
-        
+        int x = (int) Math.floor(Math.random() * space_width / GenericNPCspeedFactor + 1);
+        int y = (int) Math.floor(Math.random() * space_height / GenericNPCspeedFactor + 1);
+
         pos[0] = x;
         pos[1] = y;
         return pos;
     }
 
-    public void forceDirectionChanging(){
-        int pos[] = {super.x,super.y};
+    public void forceDirectionChanging() {
+        int pos[] = { super.x, super.y };
         pos = generatePos();
         direction_x = pos[0];
         direction_y = pos[1];
         regeneratedDirectionFlag = true;
     }
 
-    public boolean getRegeneratedDirection(){
+    public boolean getRegeneratedDirection() {
         return regeneratedDirectionFlag;
     }
-    public void setRegeneratedDirection(boolean b){
+
+    public void setRegeneratedDirection(boolean b) {
         this.regeneratedDirectionFlag = b;
     }
 
-    public int getDirectionX(){
+    public int getDirectionX() {
         return direction_x;
     }
-    public int getDirectionY(){
+
+    public int getDirectionY() {
         return direction_y;
     }
 
-
-    public void setPlayerFocus(boolean b){
+    public void setPlayerFocus(boolean b) {
         this.playerFocus = b;
     }
 
-    public  boolean getPlayerFocus(){
+    public boolean getPlayerFocus() {
         return playerFocus;
     }
 
-
-    public void setPassive(boolean b){
+    public void setPassive(boolean b) {
         this.passive = b;
     }
-    public boolean getPassive(){
+
+    public boolean getPassive() {
         return passive;
     }
 
     @Override
 
-    public int getX(){
-        return super.x*GenericNPCspeedFactor-space_width/2;
+    public int getX() {
+        return super.x * GenericNPCspeedFactor - space_width / 2;
     }
 
-    public int getY(){
-        return super.y*GenericNPCspeedFactor-space_height/2;
+    public int getY() {
+        return super.y * GenericNPCspeedFactor - space_height / 2;
     }
 }
-
-

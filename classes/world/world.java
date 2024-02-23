@@ -35,10 +35,10 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
         try{
             main_player = new player(1, 1, playerEntityId, "Player", 50, 50, width,height);
         
-            c1 = new npc(100,30, generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
-            c2 = new npc(-240,-200, generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
-            c3 = new npc(-210,-134, generic_npc, "NPC 4", 20,40, Color.RED, width,height);
-            c4 = new npc(545,-253, generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
+            c1 = new npc(400,0, generic_npc, "NPC 2", 60,60, Color.GRAY, width,height);
+            c2 = new npc(40,600, generic_npc, "NPC 3", 10,10, Color.YELLOW, width,height);
+            c3 = new npc(910,134, generic_npc, "NPC 4", 20,40, Color.RED, width,height);
+            c4 = new npc(545,653, generic_npc, "NPC 5", 80,80, Color.CYAN, width,height);
         }catch(IOException ex){
             throw ex;
         }

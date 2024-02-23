@@ -25,7 +25,7 @@ public class Game{
     public static void main(String args[]){
         Game gameRuntime = new Game();
         try{
-            wi = new Window(1920,1080);
+            wi = new Window(1200,750);
         }catch(IOException ex){
             System.out.println("EXCEPTION -> " + ex.getMessage()+ "\nSTACK TRACE -> "+ex.getStackTrace());
             System.exit(unable_to_open);

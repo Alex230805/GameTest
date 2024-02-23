@@ -69,10 +69,9 @@ public class player extends entity implements MouseListener,entityGroupInterface
         graph.setColor(c);
 
         if(enemyCollisionFlag == true){
-            lifePoints-=1;
+            lifePoints--;
+            enemyCollisionFlag = false;
         }
-
-        enemyCollisionFlag = false;
     }
 
     private boolean loadSprite() throws IOException{

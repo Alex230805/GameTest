@@ -42,7 +42,6 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
 
     public void paintComponent(Graphics graph) {
         super.paintComponent(graph);
-        ;
         graph.setColor(new Color(68, 189, 72, 128));
         graph.fillRect(0, 0, width, height);
 
