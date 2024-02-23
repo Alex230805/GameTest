@@ -50,9 +50,11 @@ public class player extends entity implements MouseListener,entityGroupInterface
 
         playerTexture = new ArrayList<>();
     
+        /* 
         if(!loadSprite()){
            throw new IOException();
         }
+        */
     }
 
     public void drawEntity(Graphics graph){

@@ -33,10 +33,8 @@ public class start_gui extends JPanel implements entityIdInterface, KeyListener,
         }catch(IOException ex){
             throw ex;
         }
-
-
+        world1.parseEntity(this);
         addMouseListener(world1.main_player);
-
         addKeyListener(this);
     }
 

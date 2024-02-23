@@ -8,7 +8,8 @@ import classes.entityGroup.*;
 
 import java.awt.*;
 import java.io.IOException;
-
+import javax.swing.*;
+import Window.gui.start_gui.start_gui;
 import Window.input.inputBufferInterface;
 
 public class world implements entityIdInterface,entityGroupInterface, inputBufferInterface{
@@ -87,5 +88,9 @@ public class world implements entityIdInterface,entityGroupInterface, inputBuffe
     }
     public void updatePlayerY(int y){
         entityContainer.updatePlayerDataY(y);
+    }
+
+    public void parseEntity(JPanel st){
+        entityContainer.parseEntity(st);
     }
 }

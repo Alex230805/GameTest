@@ -2,6 +2,7 @@ package classes.entityGroup;
 
 import java.util.*;
 
+import Window.gui.start_gui.start_gui;
 import Window.input.input;
 import Window.input.inputBufferInterface;
 import classes.entity.entity;
@@ -135,5 +136,11 @@ public class entityGroup implements entityGroupInterface, entityIdInterface, inp
         }
         player p = (player) entityContainer.get(i);
         return p;
+    }
+
+    public void parseEntity(JPanel st){
+        for(int i=0;i<entityContainer.size();i++){
+            st.add(entityContainer.get(i));
+        }
     }
 }
