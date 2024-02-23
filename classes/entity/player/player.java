@@ -2,15 +2,21 @@ package classes.entity.player;
 
 import classes.entity.entity;
 import classes.entityGroup.entityGroupInterface;
+import gameFile.entityImageFile.entityImage;
+import gameFile.entityImageFile.entityImageFileInterface;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.lang.*;
+import java.util.*;
 
+import java.awt.image.*;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import javax.imageio.*;
 
 import Window.input.inputBufferInterface;
 
-public class player extends entity implements MouseListener,entityGroupInterface, inputBufferInterface{
+public class player extends entity implements MouseListener,entityGroupInterface, inputBufferInterface, entityImageFileInterface{
     private int width;
     private int height;
     private int space_width;
@@ -23,6 +29,8 @@ public class player extends entity implements MouseListener,entityGroupInterface
     private boolean enemyCollisionFlag = false;
 
     private int lifePoints = 100;
+    
+    private ArrayList<entityImage> playerTexture;
 
     public player(  int x,int y, 
                     int id_entity, 
@@ -30,7 +38,7 @@ public class player extends entity implements MouseListener,entityGroupInterface
                     int width,
                     int height,
                     int space_width,
-                    int space_height ){
+                    int space_height ) throws IOException{
         super(x,y,id_entity,entity_name);
         this.width = width;
         this.height = height;
@@ -39,6 +47,12 @@ public class player extends entity implements MouseListener,entityGroupInterface
         setBounds(x, y, width, height);
         setVisible(true);
         super.addMouseListener(this);
+
+        playerTexture = new ArrayList<>();
+    
+        if(!loadSprite()){
+           throw new IOException();
+        }
     }
 
     public void drawEntity(Graphics graph){
@@ -59,6 +73,37 @@ public class player extends entity implements MouseListener,entityGroupInterface
         enemyCollisionFlag = false;
     }
 
+    private boolean loadSprite() throws IOException{
+        try{
+            playerTexture.add(new entityImage("player_up_1", ImageIO.read(getClass().getResourceAsStream(player_up_1))));
+            playerTexture.add(new entityImage("player_up_2", ImageIO.read(getClass().getResourceAsStream(player_up_2))));
+            playerTexture.add(new entityImage("player_up_3", ImageIO.read(getClass().getResourceAsStream(player_up_3))));
+            playerTexture.add(new entityImage("player_up_4", ImageIO.read(getClass().getResourceAsStream(player_up_4))));
+            playerTexture.add(new entityImage("player_up_5", ImageIO.read(getClass().getResourceAsStream(player_up_5))));
+
+            playerTexture.add(new entityImage("player_down_1", ImageIO.read(getClass().getResourceAsStream(player_down_1))));
+            playerTexture.add(new entityImage("player_down_2", ImageIO.read(getClass().getResourceAsStream(player_down_2))));
+            playerTexture.add(new entityImage("player_down_3", ImageIO.read(getClass().getResourceAsStream(player_down_3))));
+            playerTexture.add(new entityImage("player_down_4", ImageIO.read(getClass().getResourceAsStream(player_down_4))));
+            playerTexture.add(new entityImage("player_down_5", ImageIO.read(getClass().getResourceAsStream(player_down_5))));
+
+            playerTexture.add(new entityImage("player_left_1", ImageIO.read(getClass().getResourceAsStream(player_left_1))));
+            playerTexture.add(new entityImage("player_left_2", ImageIO.read(getClass().getResourceAsStream(player_left_2))));
+            playerTexture.add(new entityImage("player_left_3", ImageIO.read(getClass().getResourceAsStream(player_left_3))));
+            playerTexture.add(new entityImage("player_left_4", ImageIO.read(getClass().getResourceAsStream(player_left_4))));
+            playerTexture.add(new entityImage("player_left_5", ImageIO.read(getClass().getResourceAsStream(player_left_5))));
+
+            playerTexture.add(new entityImage("player_right_1", ImageIO.read(getClass().getResourceAsStream(player_right_1))));
+            playerTexture.add(new entityImage("player_right_2", ImageIO.read(getClass().getResourceAsStream(player_right_2))));
+            playerTexture.add(new entityImage("player_right_3", ImageIO.read(getClass().getResourceAsStream(player_right_3))));
+            playerTexture.add(new entityImage("player_right_4", ImageIO.read(getClass().getResourceAsStream(player_right_4))));
+            playerTexture.add(new entityImage("player_right_5", ImageIO.read(getClass().getResourceAsStream(player_right_5))));
+            return true;
+
+        }catch(IOException ex){
+            return false;
+        }
+    }
 
     public void setEntityCollision(boolean b){
         enemyCollisionFlag = b;
@@ -66,6 +111,9 @@ public class player extends entity implements MouseListener,entityGroupInterface
     public boolean getEntityCollision(){
         return enemyCollisionFlag;
     }
+
+
+
 
     public void mouseExited(MouseEvent m){}
     public void mouseReleased(MouseEvent m){

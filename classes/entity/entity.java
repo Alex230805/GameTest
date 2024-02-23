@@ -1,6 +1,8 @@
 package classes.entity;
 
 import java.awt.*;
+import java.io.IOException;
+
 import javax.swing.*;
 
 public class entity extends JComponent implements entityIdInterface{

@@ -1,5 +1,7 @@
 package Window.gui;
 
+import java.io.IOException;
+
 import Window.*;
 
 import Window.gui.start_gui.*;
@@ -13,10 +15,15 @@ public class gui {
     public start_gui start;
 
     
-    public gui(int width,int height){
+    public gui(int width,int height) throws IOException{
         this.width = width;
         this.height = height;
-        start = new start_gui(width, height);
+        try{
+            start = new start_gui(width, height);
+        }catch(IOException ex ){
+            throw ex;
+        }
+
         start.setVisible(false);
     }
 
